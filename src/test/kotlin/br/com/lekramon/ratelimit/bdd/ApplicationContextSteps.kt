@@ -4,13 +4,11 @@ import io.cucumber.java.pt.Então
 import io.cucumber.java.pt.Quando
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.ApplicationContext
 
-class ApplicationContextSteps {
-
-	@Autowired
-	private lateinit var applicationContext: ApplicationContext
+class ApplicationContextSteps(
+	private val applicationContext: ApplicationContext,
+) {
 
 	@Quando("a aplicação de testes for iniciada")
 	fun applicationTestStarted() {

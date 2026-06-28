@@ -1,8 +1,8 @@
 plugins {
-	kotlin("jvm") version "2.4.0"
-	kotlin("plugin.spring") version "2.4.0"
-	id("org.springframework.boot") version "4.1.0"
-	id("io.spring.dependency-management") version "1.1.7"
+	alias(libs.plugins.kotlin.jvm)
+	alias(libs.plugins.kotlin.spring)
+	alias(libs.plugins.spring.boot)
+	alias(libs.plugins.spring.dependency.management)
 }
 
 group = "br.com.lekramon"
@@ -15,21 +15,17 @@ java {
 	}
 }
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("tools.jackson.module:jackson-module-kotlin")
-	testImplementation(platform("io.cucumber:cucumber-bom:7.34.4"))
-	testImplementation("io.cucumber:cucumber-java")
-	testImplementation("io.cucumber:cucumber-junit-platform-engine")
-	testImplementation("io.cucumber:cucumber-spring")
-	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	implementation(libs.spring.boot.starter.webmvc)
+	implementation(libs.kotlin.reflect)
+	implementation(libs.jackson.module.kotlin)
+	testImplementation(platform(libs.cucumber.bom))
+	testImplementation(libs.cucumber.java)
+	testImplementation(libs.cucumber.junit.platform.engine)
+	testImplementation(libs.cucumber.spring)
+	testImplementation(libs.spring.boot.starter.webmvc.test)
+	testImplementation(libs.kotlin.test.junit5)
+	testRuntimeOnly(libs.junit.platform.launcher)
 }
 
 kotlin {

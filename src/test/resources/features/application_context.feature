@@ -1,6 +1,5 @@
 # language: pt
 
-@phase1 @bdd
 Funcionalidade: Sanidade da aplicação
 
   Cenário: Contexto Spring inicializa
