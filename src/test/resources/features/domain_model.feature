@@ -20,7 +20,7 @@ Funcionalidade: Modelo de limite
   Cenário: O processType monta a chave do parâmetro
     Dado o processType "parce-compras"
     Quando a chave do parâmetro for montada
-    Então a chave deve ser "faturar.rateLimit.parce-compras"
+    Então a chave deve ser "rateLimit.parce-compras"
 
   Cenário: Status possíveis da reserva
     Quando eu consultar os status possíveis da reserva
@@ -30,6 +30,17 @@ Funcionalidade: Modelo de limite
     Quando eu criar uma configuração habilitada com limite diário 10, semanal 20 e mensal 30
     Então a configuração deve estar habilitada
     E os limites devem ser diário 10, semanal 20 e mensal 30
+
+  Cenário: Configuração de rate limit pode conter somente limites diário e mensal
+    Quando eu criar uma configuração habilitada com limite diário 10 e mensal 30
+    Então a configuração deve estar habilitada
+    E os limites devem ser diário 10, semanal não configurado e mensal 30
+
+  Cenário: Configuração de rate limit pode conter somente limite mensal
+    Quando eu criar uma configuração habilitada somente com limite mensal 30
+    Então a configuração deve estar habilitada
+    E os limites diário e semanal não devem estar configurados
+    E o limite mensal deve ser 30
 
   Cenário: Reserva pendente representa uma reserva criada
     Quando eu criar uma reserva pendente de 1 unidade para o processType "parce-compras"

@@ -9,7 +9,7 @@ value class ProcessType(val value: String) {
 	}
 
 	val parameterKey: String
-		get() = "faturar.rateLimit.$value"
+		get() = "rateLimit.$value"
 
 	val processKey: String
 		get() = "PROCESS#$value"

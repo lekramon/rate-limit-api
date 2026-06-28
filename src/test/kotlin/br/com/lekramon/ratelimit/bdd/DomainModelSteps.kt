@@ -1,12 +1,12 @@
 package br.com.lekramon.ratelimit.bdd
 
 import br.com.lekramon.ratelimit.domain.model.LimitWindow
-import br.com.lekramon.ratelimit.domain.model.PeriodType
 import br.com.lekramon.ratelimit.domain.model.ProcessType
 import br.com.lekramon.ratelimit.domain.model.RateLimitConfiguration
 import br.com.lekramon.ratelimit.domain.model.RateLimitDecision
 import br.com.lekramon.ratelimit.domain.model.Reservation
-import br.com.lekramon.ratelimit.domain.model.ReservationStatus
+import br.com.lekramon.ratelimit.domain.enums.PeriodType
+import br.com.lekramon.ratelimit.domain.enums.ReservationStatus
 import io.cucumber.java.pt.Dado
 import io.cucumber.java.pt.E
 import io.cucumber.java.pt.Então
@@ -93,6 +93,23 @@ class DomainModelSteps {
 		)
 	}
 
+	@Quando("eu criar uma configuração habilitada com limite diário {int} e mensal {int}")
+	fun createEnabledConfigurationWithDailyAndMonthly(dailyLimit: Int, monthlyLimit: Int) {
+		configuration = RateLimitConfiguration(
+			enabled = true,
+			dailyLimit = dailyLimit.toLong(),
+			monthlyLimit = monthlyLimit.toLong(),
+		)
+	}
+
+	@Quando("eu criar uma configuração habilitada somente com limite mensal {int}")
+	fun createEnabledConfigurationWithOnlyMonthly(monthlyLimit: Int) {
+		configuration = RateLimitConfiguration(
+			enabled = true,
+			monthlyLimit = monthlyLimit.toLong(),
+		)
+	}
+
 	@Então("a configuração deve estar habilitada")
 	fun configurationMustBeEnabled() {
 		assertTrue(configuration?.enabled == true)
@@ -102,6 +119,24 @@ class DomainModelSteps {
 	fun configurationLimitsMustBe(dailyLimit: Int, weeklyLimit: Int, monthlyLimit: Int) {
 		assertEquals(dailyLimit.toLong(), configuration?.dailyLimit)
 		assertEquals(weeklyLimit.toLong(), configuration?.weeklyLimit)
+		assertEquals(monthlyLimit.toLong(), configuration?.monthlyLimit)
+	}
+
+	@E("os limites devem ser diário {int}, semanal não configurado e mensal {int}")
+	fun configurationLimitsMustHaveDailyAndMonthly(dailyLimit: Int, monthlyLimit: Int) {
+		assertEquals(dailyLimit.toLong(), configuration?.dailyLimit)
+		assertNull(configuration?.weeklyLimit)
+		assertEquals(monthlyLimit.toLong(), configuration?.monthlyLimit)
+	}
+
+	@E("os limites diário e semanal não devem estar configurados")
+	fun dailyAndWeeklyLimitsMustNotBeConfigured() {
+		assertNull(configuration?.dailyLimit)
+		assertNull(configuration?.weeklyLimit)
+	}
+
+	@E("o limite mensal deve ser {int}")
+	fun monthlyLimitMustBe(monthlyLimit: Int) {
 		assertEquals(monthlyLimit.toLong(), configuration?.monthlyLimit)
 	}
 

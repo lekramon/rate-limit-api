@@ -1,5 +1,6 @@
 package br.com.lekramon.ratelimit.domain.model
 
+import br.com.lekramon.ratelimit.domain.enums.PeriodType
 import java.time.Instant
 
 data class LimitWindow(
