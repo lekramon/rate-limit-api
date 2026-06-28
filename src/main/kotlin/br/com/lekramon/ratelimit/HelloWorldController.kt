@@ -1,4 +1,4 @@
-package com.faturar.ratelimit
+package br.com.lekramon.ratelimit
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
