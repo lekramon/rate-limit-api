@@ -2,7 +2,6 @@ package br.com.lekramon.ratelimit.bdd
 
 import io.cucumber.java.pt.Então
 import io.cucumber.java.pt.Quando
-import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import org.springframework.context.ConfigurableApplicationContext
 
@@ -12,11 +11,12 @@ class ApplicationContextSteps(
 
 	@Quando("a aplicação for iniciada")
 	fun applicationTestStarted() {
-		assertTrue(applicationContext.isActive)
+		// O contexto já foi iniciado pelo Spring/Cucumber antes da execução deste step.
 	}
 
 	@Então("o contexto Spring deve subir sem erros")
 	fun springContextStartsWithoutErrors() {
-		assertNotNull(applicationContext)
+		assertTrue(applicationContext.isActive)
+		assertTrue(applicationContext.beanDefinitionCount > 0)
 	}
 }
