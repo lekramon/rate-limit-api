@@ -4,15 +4,15 @@ import io.cucumber.java.pt.Então
 import io.cucumber.java.pt.Quando
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
-import org.springframework.context.ApplicationContext
+import org.springframework.context.ConfigurableApplicationContext
 
 class ApplicationContextSteps(
-	private val applicationContext: ApplicationContext,
+	private val applicationContext: ConfigurableApplicationContext,
 ) {
 
 	@Quando("a aplicação for iniciada")
 	fun applicationTestStarted() {
-		assertTrue(applicationContext.beanDefinitionCount > 0)
+		assertTrue(applicationContext.isActive)
 	}
 
 	@Então("o contexto Spring deve subir sem erros")
