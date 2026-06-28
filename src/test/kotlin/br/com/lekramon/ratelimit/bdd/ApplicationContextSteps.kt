@@ -10,7 +10,7 @@ class ApplicationContextSteps(
 	private val applicationContext: ApplicationContext,
 ) {
 
-	@Quando("a aplicação de testes for iniciada")
+	@Quando("a aplicação for iniciada")
 	fun applicationTestStarted() {
 		assertTrue(applicationContext.beanDefinitionCount > 0)
 	}
