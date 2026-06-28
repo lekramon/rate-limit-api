@@ -1,4 +1,4 @@
-package com.faturar.ratelimit
+package br.com.lekramon.ratelimit
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
