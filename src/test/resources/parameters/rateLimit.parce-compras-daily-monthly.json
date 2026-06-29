@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "limit": {
+    "daily": 10000,
+    "monthly": 100000
+  }
+}
